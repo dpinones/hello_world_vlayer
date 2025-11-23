@@ -41,8 +41,9 @@ export function useSubmitOnChain(contractAddress?: `0x${string}`) {
       const hash = await writeContractAsync({
         address: contractAddress,
         abi: TikTokCampaignVerifierV2Abi,
-        functionName: 'submitCampaign',
+        functionName: 'submitVideo',
         args: [proof.journalDataAbi, proof.zkProof],
+        gas: BigInt(500000),
       });
 
       setSubmitTxHash(hash);

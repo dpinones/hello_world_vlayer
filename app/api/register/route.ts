@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const response = {
       campaign_id: "cmp_001",
       handle_tiktok: handle_tiktok,
-      proof_self: true
+      proof_self: true  // Must be true for registration
     };
 
     return NextResponse.json(response);

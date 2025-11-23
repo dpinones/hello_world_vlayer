@@ -15,12 +15,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Extract config for REGISTRATION - only 2 fields
+    // Extract config for REGISTRATION - 3 fields
     const extractConfig = {
       "response.body": {
         "jmespath": [
           `campaign_id`,      // Field 1: Campaign ID
-          `handle_tiktok`     // Field 2: TikTok Handle
+          `handle_tiktok`,    // Field 2: TikTok Handle
+          `proof_self`        // Field 3: Proof of self (boolean)
         ]
       }
     };

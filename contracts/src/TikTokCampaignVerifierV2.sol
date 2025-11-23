@@ -164,7 +164,7 @@ contract TikTokCampaignVerifierV2 {
         }
 
         // Validate proofSelf parameter - must be false
-        if (proofSelf) {
+        if (!proofSelf) {
             revert InvalidState();
         }
 

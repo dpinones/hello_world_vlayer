@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Use the internal /api/verify-video endpoint
+    // Use the internal /api/videos endpoint (must match SUBMISSION_URL in contract)
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || `http://localhost:${process.env.PORT || 3000}`;
-    const verifyVideoUrl = `${baseUrl}/api/verify-video`;
+    const verifyVideoUrl = `${baseUrl}/api/videos`;
 
     const requestBody = {
       url: verifyVideoUrl,

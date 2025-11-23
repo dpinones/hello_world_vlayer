@@ -16,7 +16,7 @@ echo "This may take 30-60 seconds..."
 
 curl -s -X POST http://localhost:3000/api/prove-register \
   -H "Content-Type: application/json" \
-  -d "{}" > /tmp/registration-presentation.json
+  -d '{"handle_tiktok":"@happy_hasbulla_"}' > /tmp/registration-presentation.json
 
 # Check if proof was generated
 if grep -q "error" /tmp/registration-presentation.json; then
@@ -68,6 +68,7 @@ const decoded = decodeAbiParameters(
     { type: 'bytes32', name: 'queriesHash' },
     { type: 'string', name: 'campaignId' },
     { type: 'string', name: 'handleTiktok' },
+    { type: 'bool', name: 'proofSelf' },
   ],
   journalDataAbi
 );
@@ -86,7 +87,7 @@ echo "This may take 30-60 seconds..."
 
 curl -s -X POST http://localhost:3000/api/prove \
   -H "Content-Type: application/json" \
-  -d "{}" > /tmp/submission-presentation.json
+  -d '{"handle_tiktok":"@happy_hasbulla_","url_video":"https://www.tiktok.com/@happy_hasbulla_/video/123"}' > /tmp/submission-presentation.json
 
 if grep -q "error" /tmp/submission-presentation.json; then
   echo -e "${RED}✗ Error generating submission proof:${NC}"

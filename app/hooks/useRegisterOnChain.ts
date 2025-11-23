@@ -41,6 +41,7 @@ export function useRegisterOnChain(contractAddress?: `0x${string}`) {
         abi: TikTokCampaignVerifierV2Abi,
         functionName: 'register',
         args: [proof.journalDataAbi, proof.zkProof],
+        gas: BigInt(500000),
       });
 
       setRegisterTxHash(hash);

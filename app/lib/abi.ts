@@ -196,7 +196,7 @@ export const TikTokCampaignVerifierV2Abi = [
   },
   {
     "type": "function",
-    "name": "submitCampaign",
+    "name": "submitVideo",
     "inputs": [
       {
         "name": "journalData",
