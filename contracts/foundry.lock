@@ -1,0 +1,14 @@
+{
+  "dependencies/openzeppelin-contracts": {
+    "tag": {
+      "name": "v5.5.0",
+      "rev": "fcbae5394ae8ad52d8e580a3477db99814b9d565"
+    }
+  },
+  "lib/risc0-ethereum": {
+    "tag": {
+      "name": "v3.0.1",
+      "rev": "365e7b2db4f620fa256580c27558d2623362b9ae"
+    }
+  }
+}
