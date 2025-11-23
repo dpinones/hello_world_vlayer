@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { sepolia } from "wagmi/chains";
 import { useCampaignState, getStateName, canRegister, canSubmitProof, canClaimReward } from "../hooks/useCampaignState";
 import { useRegistration } from "../hooks/useRegistration";
@@ -13,6 +13,8 @@ import { CampaignState } from "../lib/types";
 
 export default function CampaignV2Page() {
   const { address, isConnected, chain } = useAccount();
+  const { connect, connectors } = useConnect();
+  const { disconnect } = useDisconnect();
   const contractAddress = process.env.NEXT_PUBLIC_SEPOLIA_CONTRACT_ADDRESS as `0x${string}`;
 
   // Campaign state management
@@ -128,6 +130,34 @@ export default function CampaignV2Page() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-light mb-4">TikTok Campaign Verifier V2</h1>
           <p className="text-gray-400 text-lg">Multi-phase campaign with ZK proofs</p>
+
+          {/* Wallet Connection Button */}
+          <div className="mt-6 flex justify-center">
+            {!isConnected ? (
+              <button
+                onClick={() => connect({ connector: connectors[0] })}
+                className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors text-lg"
+              >
+                Connect Wallet
+              </button>
+            ) : (
+              <div className="flex items-center gap-4">
+                <div className="px-6 py-3 bg-zinc-800 rounded-lg">
+                  <span className="text-sm text-gray-400">Connected: </span>
+                  <span className="font-mono text-sm">
+                    {address?.slice(0, 6)}...{address?.slice(-4)}
+                  </span>
+                </div>
+                <button
+                  onClick={() => disconnect()}
+                  className="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-medium transition-colors"
+                >
+                  Disconnect
+                </button>
+              </div>
+            )}
+          </div>
+
           <div className="mt-4">
             <a
               href={`https://sepolia.etherscan.io/address/${contractAddress}`}
