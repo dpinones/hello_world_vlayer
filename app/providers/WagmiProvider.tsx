@@ -18,7 +18,7 @@ const getWagmiConfig = () => {
       connectors: [injected()],
       transports: {
         [anvil.id]: http("http://127.0.0.1:8545"),
-        [sepolia.id]: http(),
+        [sepolia.id]: http("https://sepolia.drpc.org"),
         [baseSepolia.id]: http(),
         [optimismSepolia.id]: http(),
       },
@@ -29,7 +29,7 @@ const getWagmiConfig = () => {
     chains: [sepolia, baseSepolia, optimismSepolia],
     connectors: [injected()],
     transports: {
-      [sepolia.id]: http(),
+      [sepolia.id]: http("https://sepolia.drpc.org"),
       [baseSepolia.id]: http(),
       [optimismSepolia.id]: http(),
     },
