@@ -32,8 +32,8 @@ export async function POST(request: NextRequest) {
 
     console.log('Sending to vlayer API (prove-register):', JSON.stringify(requestBody, null, 2));
 
-    const baseUrl = (process.env.WEB_PROVER_API_URL || 'https://web-prover.vlayer.xyz/api/v1').replace(/\/$/, '');
-    const response = await fetch(`${baseUrl}/prove`, {
+    const vlayerApiUrl = (process.env.WEB_PROVER_API_URL || 'https://web-prover.vlayer.xyz/api/v1').replace(/\/$/, '');
+    const response = await fetch(`${vlayerApiUrl}/prove`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

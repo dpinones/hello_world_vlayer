@@ -41,8 +41,8 @@ export async function POST(request: NextRequest) {
     console.log('Upstream URL being proved:', requestBody.url);
     console.log('Headers being sent:', requestBody.headers);
 
-    const baseUrl = (process.env.WEB_PROVER_API_URL || 'https://web-prover.vlayer.xyz/api/v1').replace(/\/$/, '');
-    const response = await fetch(`${baseUrl}/prove`, {
+    const vlayerApiUrl = (process.env.WEB_PROVER_API_URL || 'https://web-prover.vlayer.xyz/api/v1').replace(/\/$/, '');
+    const response = await fetch(`${vlayerApiUrl}/prove`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
