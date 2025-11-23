@@ -75,7 +75,7 @@ export function useProveFlow() {
 
       // Decode journal data for TikTok
       const decoded = decodeJournalData(journalDataAbi as `0x${string}`);
-      const campaignData = {
+      const submissionData = {
         campaignId: decoded.campaignId,
         handleTiktok: decoded.handleTiktok,
         scoreCalidad: Number(decoded.scoreCalidad),
@@ -85,7 +85,8 @@ export function useProveFlow() {
       setZkProofResult({
         zkProof: zkProof as `0x${string}`,
         journalDataAbi: journalDataAbi as `0x${string}`,
-        campaignData
+        submissionData,
+        campaignData: submissionData // V1 compatibility
       });
     } catch (err: any) {
       setError(err?.message || 'Failed to generate ZK proof');

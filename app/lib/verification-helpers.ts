@@ -28,7 +28,7 @@ export async function decodeTransactionError(params: {
       await params.publicClient.simulateContract({
         address: params.contractAddress,
         abi: GitHubContributionVerifierAbi,
-        functionName: "submitContribution",
+        functionName: "submitVideo" as any, // Updated from submitContribution
         args: [params.journalData, params.seal],
         account: params.accountAddress,
       });
@@ -63,22 +63,22 @@ export async function decodeTransactionError(params: {
 }
 
 /**
- * Gets the repo name for redirect, falling back to parsing from inputUrl
+ * Gets the handle for redirect (TikTok handle or video URL)
  */
 export function getRepoForRedirect(
   decoded: DecodedJournalData,
   inputUrl: string
 ): string {
-  if (decoded.repo) {
-    return decoded.repo;
+  // For TikTok, return the handle or video URL
+  if (decoded.handleTiktok) {
+    return decoded.handleTiktok;
   }
 
-  const { owner, name } = parseOwnerRepo(inputUrl);
-  if (owner && name) {
-    return `${owner}/${name}`;
+  if (decoded.urlVideo) {
+    return decoded.urlVideo;
   }
 
-  return "";
+  return inputUrl || "";
 }
 
 /**
@@ -93,16 +93,16 @@ export function buildErrorRedirectParams(params: {
   inputUrl: string;
   contractAddress: string;
 }): URLSearchParams {
-  const repoForRedirect = getRepoForRedirect(params.decoded, params.inputUrl);
+  const handleForRedirect = getRepoForRedirect(params.decoded, params.inputUrl);
 
   return new URLSearchParams({
     txHash: params.txHash,
     chainId: String(params.chainId),
     error: params.errorMessage,
     errorName: params.errorName,
-    handle: params.decoded.username,
-    reponame: repoForRedirect,
-    contributions: String(params.decoded.contributions),
+    handle: params.decoded.handleTiktok || '',
+    videoUrl: params.decoded.urlVideo || handleForRedirect,
+    score: String(params.decoded.scoreCalidad || 0),
     contractAddress: params.contractAddress,
   });
 }
@@ -116,13 +116,13 @@ export function buildSuccessRedirectParams(params: {
   inputUrl: string;
   txHash: `0x${string}`;
 }): URLSearchParams {
-  const repoForRedirect = getRepoForRedirect(params.decoded, params.inputUrl);
+  const handleForRedirect = getRepoForRedirect(params.decoded, params.inputUrl);
 
   return new URLSearchParams({
-    handle: params.decoded.username,
+    handle: params.decoded.handleTiktok || '',
     chainId: String(params.chainId),
-    reponame: repoForRedirect,
-    contributions: String(params.decoded.contributions),
+    videoUrl: params.decoded.urlVideo || handleForRedirect,
+    score: String(params.decoded.scoreCalidad || 0),
     txHash: params.txHash,
   });
 }

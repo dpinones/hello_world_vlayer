@@ -57,19 +57,24 @@ export function ZKProofResults(props: { zkProofResult: any }) {
                 </div>
                 <div className="grid grid-cols-[140px_1fr] gap-2">
                   <span className="text-gray-500">Timestamp:</span>
-                  <span className="text-gray-300">{new Date(decoded.tlsTimestamp * 1000).toLocaleString()}</span>
+                  <span className="text-gray-300">{new Date(decoded.timestamp * 1000).toLocaleString()}</span>
                 </div>
                 <div className="grid grid-cols-[140px_1fr] gap-2">
                   <span className="text-gray-500">Extracted Values:</span>
                   <div className="text-gray-300">
-                    <div className="font-mono text-xs bg-gray-800 px-2 py-1 rounded mb-1">[0] Repository: {decoded.repo}</div>
-                    <div className="font-mono text-xs bg-gray-800 px-2 py-1 rounded mb-1">[1] Username: {decoded.username}</div>
-                    <div className="font-mono text-xs bg-gray-800 px-2 py-1 rounded">[2] Contributions: {decoded.contributions.toString()}</div>
+                    <div className="font-mono text-xs bg-gray-800 px-2 py-1 rounded mb-1">Campaign ID: {decoded.campaignId}</div>
+                    <div className="font-mono text-xs bg-gray-800 px-2 py-1 rounded mb-1">Handle: {decoded.handleTiktok}</div>
+                    {decoded.scoreCalidad && (
+                      <div className="font-mono text-xs bg-gray-800 px-2 py-1 rounded mb-1">Score: {decoded.scoreCalidad.toString()}</div>
+                    )}
+                    {decoded.urlVideo && (
+                      <div className="font-mono text-xs bg-gray-800 px-2 py-1 rounded">Video: {decoded.urlVideo}</div>
+                    )}
                   </div>
                 </div>
                 <div className="grid grid-cols-[140px_1fr] gap-2">
-                  <span className="text-gray-500">Extraction Hash:</span>
-                  <span className="text-gray-300 font-mono text-xs break-all">{decoded.extractionHash}</span>
+                  <span className="text-gray-500">Queries Hash:</span>
+                  <span className="text-gray-300 font-mono text-xs break-all">{decoded.queriesHash}</span>
                 </div>
                 <div className="grid grid-cols-[140px_1fr] gap-2">
                   <span className="text-gray-500">Notary Fingerprint:</span>
