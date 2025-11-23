@@ -30,9 +30,8 @@ async function verify(options: VerifyOptions) {
     'forge',
     'verify-contract',
     contractAddress,
-    'src/GitHubContributionVerifier.sol:GitHubContributionVerifier',
-    '--chain',
-    network,
+    'src/TikTokCampaignVerifierV2.sol:TikTokCampaignVerifierV2',
+    '--rpc-url https://rpc.celocolombia.org',
     '--watch',
   ];
 

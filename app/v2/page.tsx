@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { sepolia } from "wagmi/chains";
+import { celo, sepolia } from "wagmi/chains";
 import { useCampaignState, getStateName, canRegister, canSubmitProof, canClaimReward } from "../hooks/useCampaignState";
 import { useRegistration } from "../hooks/useRegistration";
 import { useRegisterOnChain } from "../hooks/useRegisterOnChain";
@@ -121,7 +121,7 @@ export default function CampaignV2Page() {
     }
   }
 
-  const isWrongChain = chain?.id !== sepolia.id;
+  const isWrongChain = chain?.id !== celo.id; 
 
   return (
     <div className="min-h-screen bg-black text-white">

@@ -33,7 +33,7 @@ contract TikTokCampaignVerifierV2 {
     string public constant CAMPAIGN_ID = "cmp_001";
 
     /// @notice CCOP token address (hardcoded)
-    address public constant CCOP_ADDRESS = 0xdAC17F958D2ee523a2206206994597C13D831ec7;
+    address public constant CCOP_ADDRESS = 0x8A567e2aE79CA692Bd748aB832081C45de4041eA;
 
     /// @notice CCOP token for rewards
     IERC20 public immutable CCOP;

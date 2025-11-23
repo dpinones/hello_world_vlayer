@@ -1,5 +1,5 @@
 import { type Chain } from 'viem';
-import { sepolia, baseSepolia, optimismSepolia, foundry } from 'viem/chains';
+import { celo, sepolia, baseSepolia, optimismSepolia, foundry } from 'viem/chains';
 
 export interface NetworkConfig {
   chain: Chain;
@@ -14,8 +14,8 @@ export const networks: Record<string, NetworkConfig> = {
     contractAddress: process.env.ANVIL_CONTRACT_ADDRESS,
   },
   sepolia: {
-    chain: sepolia,
-    rpcUrl: process.env.SEPOLIA_RPC_URL || 'https://rpc.sepolia.org',
+    chain: celo,
+    rpcUrl: process.env.SEPOLIA_RPC_URL || 'https://rpc.celocolombia.org',
     contractAddress: process.env.SEPOLIA_CONTRACT_ADDRESS,
   },
   'base-sepolia': {

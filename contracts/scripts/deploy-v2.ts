@@ -79,7 +79,8 @@ async function deploy(options: DeployOptions) {
   // Use SEPOLIA_RPC_URL from .env if deploying to sepolia
   let rpcUrl = networkConfig.rpcUrl;
   if (network === 'sepolia') {
-    const sepoliaRpcUrl = process.env.SEPOLIA_RPC_URL;
+    const sepoliaRpcUrl = "https://rpc.celocolombia.org";
+    // const sepoliaRpcUrl = process.env.SEPOLIA_RPC_URL;
     if (sepoliaRpcUrl) {
       rpcUrl = sepoliaRpcUrl;
       console.log(`Using SEPOLIA_RPC_URL from .env`);
@@ -93,7 +94,8 @@ async function deploy(options: DeployOptions) {
   console.log(`RPC URL: ${rpcUrl}`);
 
   // Setup wallet
-  const privateKey = process.env.PRIVATE_KEY;
+  // const privateKey = process.env.PRIVATE_KEY;
+  const privateKey = "0xe3186d07c12a87ec67c5d69ae6d31fdffd21c5d9652a0921bbc7a34585452981";
   if (!privateKey) {
     throw new Error('PRIVATE_KEY not set in environment variables');
   }
